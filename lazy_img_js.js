@@ -12,8 +12,14 @@
     });
 
 参数说明：
-    loading_mode：使用模块化加载还是单独image方式加载，把className设置为 lazyImg即可。global模式匹配全部img
-    loading_type：加载位置，当图片进入到哪里时候开始加载图片，有三个参数：bottom,top,middle
+    loading_mode：使用模块化加载模式。
+                    'range'：用于范围，把需要加载的图片包在class=lazyImg块内即可。
+                    'global'：用于全局，把所有img标签都加载。
+                    'img'：用于单张，需要把想要延迟加载的图片加上class=lazyImg即可。
+    loading_type：加载位置，当图片进入到哪里时候开始加载图片。
+                    'top'：只要图片即将进入到屏幕中就加载
+                    'middle'：当图片的一半进入到屏幕中时候加载
+                    'bottom'：当图片完全进入屏幕中时加载
     loading_img：加载图片地址
     loading_transition：是否开启渐变加载
     loading_time：渐变加载时间，毫秒为单位
@@ -27,6 +33,107 @@ let LazyImg = (function () {
     var winScrollTop;
     var plan;
     var _default;
+
+    //--------------工具函数开始----------------
+    //滚动更新检测
+    function updateScroll() {
+        winScrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+    }
+
+    //计算图片的阀值
+    function getTargetLine(ele) {
+        var baseLine = offset(ele).top;
+        var eleHeight = ele.offsetHeight;
+        switch (_default.loading_type) {
+            case 'top':
+                break;
+            case 'middle':
+                baseLine += eleHeight / 2;
+                break;
+            default:
+                baseLine += eleHeight;
+                break
+        }
+        return baseLine
+    }
+
+    //DOM2级事件封装函数
+    function addEvent(obj, type, fn) {
+        //IE兼容
+        if (obj.attachEvent) {
+            obj.attachEvent('on' + type, function () {
+                fn.call(obj);
+            })
+        } else {
+            obj.addEventListener(type, fn, false);
+        }
+    }
+
+    //图片的渐变效果
+    function fade(ele, src) {
+        let op = Number(window.getComputedStyle(ele, null)['opacity']);
+        let step = 0.6/(_default.loading_time/17);
+        console.log(step);
+        ele.style.opacity = op;
+        let timer = setInterval(function () {
+            if (ele.style.opacity <= 0.4) {
+                clearInterval(timer);
+                ele.setAttribute('src', src);
+                ele.removeAttribute('img-data');
+                ele.style.background = '';
+                //用于fake交界
+                ele.style.opacity = 0.4;
+                //渐显
+                let timer1 = setInterval(function () {
+                    if (ele.style.opacity >= 1) {
+                        ele.style.opacity = 1;
+                        clearInterval(timer1);
+                    }else{
+                        ele.style.opacity = Number(ele.style.opacity) + step;
+                    }
+                }, 17);
+            } else {
+                ele.style.opacity -= 0.2;
+            }
+        }, 17)
+    }
+
+    //计算任何元素相对整体页面的顶部距离
+    function offset(ele) {
+        let L = ele.offsetLeft;
+        let T = ele.offsetTop;
+        let parent = ele.offsetParent;
+        while (parent) {
+            if (!/MSIE 8/.test(window.navigator.userAgent)) {
+                L += parent.clientLeft;
+                T += parent.clientTop;
+            }
+            L += parent.offsetLeft;
+            T += parent.offsetTop;
+            parent = parent.offsetParent;
+        }
+        return {left: L, top: T}
+    };
+
+    //GetByClassName（兼容）
+    function getElementByClass(str, context) {
+        context = context || document;
+        if ('getElementsByClassName' in document) {
+            return [...context.getElementsByClassName(str)];
+        }
+        //IE 6-8兼容
+        str = str.trim().replace(/ +/g, '|');
+        var result = []
+        var childrenList = context.getElementsByTagName('*');
+        reg = new RegExp('(^| +)(' + str + ')( +|$)');
+        console.log(reg);
+        for (var i = 0; i < childrenList.length; i++) {
+            reg.test(childrenList[i].className) ? result.push(childrenList[i]) : null;
+        }
+        return result
+    };
+    //--------------工具函数结束----------------
+
 
     //函数赋值
     function initData() {
@@ -52,101 +159,6 @@ let LazyImg = (function () {
             (options !== undefined && options.hasOwnProperty(key)) ? _default[key] = options[key] : null;
         }
     }
-
-
-    //工具函数
-    function updateScroll() {
-        winScrollTop = document.documentElement.scrollTop || document.body.scrollTop;
-    }
-
-    function getTargetLine(ele) {
-        var baseLine = offset(ele).top;
-        var eleHeight = ele.offsetHeight;
-        switch (_default.loading_type) {
-            case 'top':
-                break;
-            case 'middle':
-                baseLine += eleHeight / 2;
-                break;
-            default:
-                baseLine += eleHeight;
-                break
-        }
-        return baseLine
-    }
-
-    function addEvent(obj, type, fn) {
-        //IE兼容
-        if (obj.attachEvent) {
-            obj.attachEvent('on' + type, function () {
-                fn.call(obj);
-            })
-        } else {
-            obj.addEventListener(type, fn, false);
-        }
-    }
-
-    function fade(ele, src) {
-        let op = Number(window.getComputedStyle(ele, null)['opacity']);
-        let step = 0.6/(_default.loading_time/17);
-        console.log(step);
-        ele.style.opacity = op;
-        let timer = setInterval(function () {
-            if (ele.style.opacity <= 0.4) {
-                clearInterval(timer);
-                ele.setAttribute('src', src);
-                ele.removeAttribute('img-data');
-                ele.style.background = '';
-                ele.style.opacity = 0.4;
-                //渐显
-                let timer1 = setInterval(function () {
-                    if (ele.style.opacity >= 1) {
-                        ele.style.opacity = 1;
-                        clearInterval(timer1);
-                    }else{
-                        ele.style.opacity = Number(ele.style.opacity) + step;
-                    }
-                }, 17);
-            } else {
-                ele.style.opacity -= 0.2;
-            }
-        }, 17)
-    }
-
-
-    var offset = function offset(ele) {
-        let L = ele.offsetLeft;
-        let T = ele.offsetTop;
-        let parent = ele.offsetParent;
-        while (parent) {
-            if (!/MSIE 8/.test(window.navigator.userAgent)) {
-                L += parent.clientLeft;
-                T += parent.clientTop;
-            }
-            L += parent.offsetLeft;
-            T += parent.offsetTop;
-            parent = parent.offsetParent;
-        }
-        return {left: L, top: T}
-    };
-
-    //GetByClassName
-    var getElementByClass = function getElementByClass(str, context) {
-        context = context || document;
-        if ('getElementsByClassName' in document) {
-            return [...context.getElementsByClassName(str)];
-        }
-        //IE 6-8兼容
-        str = str.trim().replace(/ +/g, '|');
-        var result = []
-        var childrenList = context.getElementsByTagName('*');
-        reg = new RegExp('(^| +)(' + str + ')( +|$)');
-        console.log(reg);
-        for (var i = 0; i < childrenList.length; i++) {
-            reg.test(childrenList[i].className) ? result.push(childrenList[i]) : null;
-        }
-        return result
-    };
 
     //把img打包在div内部，替换默认加载图片，并把真实图片地址放到img-data属性下
     function replaceImg() {
@@ -219,7 +231,7 @@ let LazyImg = (function () {
         }
     }
 
-    //载入window 监听
+    //window监听事件
     function loadEvent() {
         addEvent(window, 'scroll', function () {
             lazyLoad();
@@ -242,7 +254,7 @@ let LazyImg = (function () {
         }
     }
 
-    //返回
+    //外部接口
     return {
         load: function (options) {
             initData();
