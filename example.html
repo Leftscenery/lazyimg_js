@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lazy Img</title>
+
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        body{
+            width: 100%;
+            padding: 30px;
+            background: rgba(0,0,0,0.1);
+        }
+        p{
+            display: inline-block;
+        }
+        img{
+            border: none;
+            width: 200px;
+            height:200px;
+        }
+        .lazyImg{
+            display: block;
+        }
+    </style>
+</head>
+<script src="lazy_img_js.js"></script>
+<body>
+
+<div class="lazyImg">
+    <img name="1" src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1531289526997&di=36758ccd9f67fb384a9d1be51333da28&imgtype=0&src=http%3A%2F%2Fimages6.fanpop.com%2Fimage%2Fpolls%2F1539000%2F1539664_1454460240781_full.png" alt="">
+    <img name="2" src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1531289526997&di=36758ccd9f67fb384a9d1be51333da28&imgtype=0&src=http%3A%2F%2Fimages6.fanpop.com%2Fimage%2Fpolls%2F1539000%2F1539664_1454460240781_full.png" alt="">
+    <img name="3" src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1531289526997&di=36758ccd9f67fb384a9d1be51333da28&imgtype=0&src=http%3A%2F%2Fimages6.fanpop.com%2Fimage%2Fpolls%2F1539000%2F1539664_1454460240781_full.png" alt="">
+    <img name="4" src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1531289526997&di=36758ccd9f67fb384a9d1be51333da28&imgtype=0&src=http%3A%2F%2Fimages6.fanpop.com%2Fimage%2Fpolls%2F1539000%2F1539664_1454460240781_full.png" alt="">
+    <img name="5" src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1531289526997&di=36758ccd9f67fb384a9d1be51333da28&imgtype=0&src=http%3A%2F%2Fimages6.fanpop.com%2Fimage%2Fpolls%2F1539000%2F1539664_1454460240781_full.png" alt="">
+    <img name="6" src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1531289526997&di=36758ccd9f67fb384a9d1be51333da28&imgtype=0&src=http%3A%2F%2Fimages6.fanpop.com%2Fimage%2Fpolls%2F1539000%2F1539664_1454460240781_full.png" alt="">
+    <img name="7" src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1531289526997&di=36758ccd9f67fb384a9d1be51333da28&imgtype=0&src=http%3A%2F%2Fimages6.fanpop.com%2Fimage%2Fpolls%2F1539000%2F1539664_1454460240781_full.png" alt="">
+    <img name="8" src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1531289526997&di=36758ccd9f67fb384a9d1be51333da28&imgtype=0&src=http%3A%2F%2Fimages6.fanpop.com%2Fimage%2Fpolls%2F1539000%2F1539664_1454460240781_full.png" alt="">
+    <img name="9" src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1531289526997&di=36758ccd9f67fb384a9d1be51333da28&imgtype=0&src=http%3A%2F%2Fimages6.fanpop.com%2Fimage%2Fpolls%2F1539000%2F1539664_1454460240781_full.png" alt="">
+    <img name="10" src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1531289526997&di=36758ccd9f67fb384a9d1be51333da28&imgtype=0&src=http%3A%2F%2Fimages6.fanpop.com%2Fimage%2Fpolls%2F1539000%2F1539664_1454460240781_full.png" alt="">
+    <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1531289526997&di=36758ccd9f67fb384a9d1be51333da28&imgtype=0&src=http%3A%2F%2Fimages6.fanpop.com%2Fimage%2Fpolls%2F1539000%2F1539664_1454460240781_full.png" alt="">
+    <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1531289526997&di=36758ccd9f67fb384a9d1be51333da28&imgtype=0&src=http%3A%2F%2Fimages6.fanpop.com%2Fimage%2Fpolls%2F1539000%2F1539664_1454460240781_full.png" alt="">
+    <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1531289526997&di=36758ccd9f67fb384a9d1be51333da28&imgtype=0&src=http%3A%2F%2Fimages6.fanpop.com%2Fimage%2Fpolls%2F1539000%2F1539664_1454460240781_full.png" alt="">
+    <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1531289526997&di=36758ccd9f67fb384a9d1be51333da28&imgtype=0&src=http%3A%2F%2Fimages6.fanpop.com%2Fimage%2Fpolls%2F1539000%2F1539664_1454460240781_full.png" alt="">
+    <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1531289526997&di=36758ccd9f67fb384a9d1be51333da28&imgtype=0&src=http%3A%2F%2Fimages6.fanpop.com%2Fimage%2Fpolls%2F1539000%2F1539664_1454460240781_full.png" alt="">
+    <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1531289526997&di=36758ccd9f67fb384a9d1be51333da28&imgtype=0&src=http%3A%2F%2Fimages6.fanpop.com%2Fimage%2Fpolls%2F1539000%2F1539664_1454460240781_full.png" alt="">
+    <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1531289526997&di=36758ccd9f67fb384a9d1be51333da28&imgtype=0&src=http%3A%2F%2Fimages6.fanpop.com%2Fimage%2Fpolls%2F1539000%2F1539664_1454460240781_full.png" alt="">
+    <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1531289526997&di=36758ccd9f67fb384a9d1be51333da28&imgtype=0&src=http%3A%2F%2Fimages6.fanpop.com%2Fimage%2Fpolls%2F1539000%2F1539664_1454460240781_full.png" alt="">
+    <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1531289526997&di=36758ccd9f67fb384a9d1be51333da28&imgtype=0&src=http%3A%2F%2Fimages6.fanpop.com%2Fimage%2Fpolls%2F1539000%2F1539664_1454460240781_full.png" alt="">
+    <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1531289526997&di=36758ccd9f67fb384a9d1be51333da28&imgtype=0&src=http%3A%2F%2Fimages6.fanpop.com%2Fimage%2Fpolls%2F1539000%2F1539664_1454460240781_full.png" alt="">
+    <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1531289526997&di=36758ccd9f67fb384a9d1be51333da28&imgtype=0&src=http%3A%2F%2Fimages6.fanpop.com%2Fimage%2Fpolls%2F1539000%2F1539664_1454460240781_full.png" alt="">
+    <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1531289526997&di=36758ccd9f67fb384a9d1be51333da28&imgtype=0&src=http%3A%2F%2Fimages6.fanpop.com%2Fimage%2Fpolls%2F1539000%2F1539664_1454460240781_full.png" alt="">
+    <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1531289526997&di=36758ccd9f67fb384a9d1be51333da28&imgtype=0&src=http%3A%2F%2Fimages6.fanpop.com%2Fimage%2Fpolls%2F1539000%2F1539664_1454460240781_full.png" alt="">
+    <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1531289526997&di=36758ccd9f67fb384a9d1be51333da28&imgtype=0&src=http%3A%2F%2Fimages6.fanpop.com%2Fimage%2Fpolls%2F1539000%2F1539664_1454460240781_full.png" alt="">
+    <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1531289526997&di=36758ccd9f67fb384a9d1be51333da28&imgtype=0&src=http%3A%2F%2Fimages6.fanpop.com%2Fimage%2Fpolls%2F1539000%2F1539664_1454460240781_full.png" alt="">
+    <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1531289526997&di=36758ccd9f67fb384a9d1be51333da28&imgtype=0&src=http%3A%2F%2Fimages6.fanpop.com%2Fimage%2Fpolls%2F1539000%2F1539664_1454460240781_full.png" alt="">
+    <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1531289526997&di=36758ccd9f67fb384a9d1be51333da28&imgtype=0&src=http%3A%2F%2Fimages6.fanpop.com%2Fimage%2Fpolls%2F1539000%2F1539664_1454460240781_full.png" alt="">
+    <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1531289526997&di=36758ccd9f67fb384a9d1be51333da28&imgtype=0&src=http%3A%2F%2Fimages6.fanpop.com%2Fimage%2Fpolls%2F1539000%2F1539664_1454460240781_full.png" alt="">
+    <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1531289526997&di=36758ccd9f67fb384a9d1be51333da28&imgtype=0&src=http%3A%2F%2Fimages6.fanpop.com%2Fimage%2Fpolls%2F1539000%2F1539664_1454460240781_full.png" alt="">
+    <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1531289526997&di=36758ccd9f67fb384a9d1be51333da28&imgtype=0&src=http%3A%2F%2Fimages6.fanpop.com%2Fimage%2Fpolls%2F1539000%2F1539664_1454460240781_full.png" alt="">
+    <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1531289526997&di=36758ccd9f67fb384a9d1be51333da28&imgtype=0&src=http%3A%2F%2Fimages6.fanpop.com%2Fimage%2Fpolls%2F1539000%2F1539664_1454460240781_full.png" alt="">
+    <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1531289526997&di=36758ccd9f67fb384a9d1be51333da28&imgtype=0&src=http%3A%2F%2Fimages6.fanpop.com%2Fimage%2Fpolls%2F1539000%2F1539664_1454460240781_full.png" alt="">
+    <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1531289526997&di=36758ccd9f67fb384a9d1be51333da28&imgtype=0&src=http%3A%2F%2Fimages6.fanpop.com%2Fimage%2Fpolls%2F1539000%2F1539664_1454460240781_full.png" alt="">
+    <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1531289526997&di=36758ccd9f67fb384a9d1be51333da28&imgtype=0&src=http%3A%2F%2Fimages6.fanpop.com%2Fimage%2Fpolls%2F1539000%2F1539664_1454460240781_full.png" alt="">
+    <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1531289526997&di=36758ccd9f67fb384a9d1be51333da28&imgtype=0&src=http%3A%2F%2Fimages6.fanpop.com%2Fimage%2Fpolls%2F1539000%2F1539664_1454460240781_full.png" alt="">
+    <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1531289526997&di=36758ccd9f67fb384a9d1be51333da28&imgtype=0&src=http%3A%2F%2Fimages6.fanpop.com%2Fimage%2Fpolls%2F1539000%2F1539664_1454460240781_full.png" alt="">
+    <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1531289526997&di=36758ccd9f67fb384a9d1be51333da28&imgtype=0&src=http%3A%2F%2Fimages6.fanpop.com%2Fimage%2Fpolls%2F1539000%2F1539664_1454460240781_full.png" alt="">
+    <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1531289526997&di=36758ccd9f67fb384a9d1be51333da28&imgtype=0&src=http%3A%2F%2Fimages6.fanpop.com%2Fimage%2Fpolls%2F1539000%2F1539664_1454460240781_full.png" alt="">
+    <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1531289526997&di=36758ccd9f67fb384a9d1be51333da28&imgtype=0&src=http%3A%2F%2Fimages6.fanpop.com%2Fimage%2Fpolls%2F1539000%2F1539664_1454460240781_full.png" alt="">
+</div>
+
+
+
+</body>
+</html>
+<script>
+    LazyImg.load({
+        loading_type:'middle',
+        loading_transition:true,
+        loading_time: 500
+    });
+</script>
