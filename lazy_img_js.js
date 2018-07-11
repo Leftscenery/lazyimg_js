@@ -4,6 +4,7 @@
     把需要延迟加载的图片放到class：lazyImg里
     激活
     LazyImg.load({
+        loading_mode: 'range'
         loading_type:'bottom',
         loading_img: 'xxxx.jpg',
         loading_transition:false,
@@ -11,10 +12,11 @@
     });
 
 参数说明：
+    loading_mode：使用模块化加载还是单独image方式加载，把className设置为 lazyImg即可。global模式匹配全部img
     loading_type：加载位置，当图片进入到哪里时候开始加载图片，有三个参数：bottom,top,middle
     loading_img：加载图片地址
     loading_transition：是否开启渐变加载
-    loading_time：渐变加载时间，毫秒
+    loading_time：渐变加载时间，毫秒为单位
 */
 
 let LazyImg = (function () {
@@ -35,6 +37,7 @@ let LazyImg = (function () {
         winScrollTop = document.documentElement.scrollTop || document.body.scrollTop;
         plan = [];
         _default = {
+            loading_mode: 'range',
             loading_type: 'bottom',
             loading_img: 'https://img.zcool.cn/community/0142eb5992b0650000002129b61cfc.gif',
             loading_transition: true,
@@ -85,16 +88,16 @@ let LazyImg = (function () {
 
     function fade(ele, src) {
         let op = Number(window.getComputedStyle(ele, null)['opacity']);
-        let step = 1/(_default.loading_time/17);
+        let step = 0.6/(_default.loading_time/17);
         console.log(step);
         ele.style.opacity = op;
         let timer = setInterval(function () {
-            if (ele.style.opacity <= 0) {
+            if (ele.style.opacity <= 0.4) {
                 clearInterval(timer);
                 ele.setAttribute('src', src);
                 ele.removeAttribute('img-data');
                 ele.style.background = '';
-                ele.style.opacity = 0;
+                ele.style.opacity = 0.4;
                 //渐显
                 let timer1 = setInterval(function () {
                     if (ele.style.opacity >= 1) {
@@ -147,20 +150,46 @@ let LazyImg = (function () {
 
     //把img打包在div内部，替换默认加载图片，并把真实图片地址放到img-data属性下
     function replaceImg() {
-        for (var i = 0; i < holder.length; i++) {
-            var imgList = holder[i].getElementsByTagName('img');
-            for (let j = 0; j < imgList.length; j++) {
+        if(_default.loading_mode === 'range'){
+            for (var i = 0; i < holder.length; i++) {
+                var imgList = holder[i].getElementsByTagName('img');
+                for (let j = 0; j < imgList.length; j++) {
+                    //设置属性
+                    var item = imgList[j];
+                    var src = imgList[j].getAttribute('src');
+                    item.setAttribute('src', "");
+                    item.setAttribute('img-data', src);
+                    item.style.background = `url(${_default.loading_img}) no-repeat center`;
+                    item.style.backgroundSize = 'contain';
+                    imgList[j].flg = false;
+                    plan.push(imgList[j]);
+                }
+            }
+        }else if(_default.loading_mode === 'image'){
+            for (var j = 0; j < holder.length; j++) {
                 //设置属性
-                var item = imgList[j];
-                var src = imgList[j].getAttribute('src');
+                var item = holder[j];
+                var src = holder[j].getAttribute('src');
                 item.setAttribute('src', "");
                 item.setAttribute('img-data', src);
                 item.style.background = `url(${_default.loading_img}) no-repeat center`;
                 item.style.backgroundSize = 'contain';
-                imgList[j].flg = false;
-                plan.push(imgList[j]);
+                holder[j].flg = false;
+                plan.push(holder[j]);
             }
-
+        }else if(_default.loading_mode === 'global'){
+            holder = document.getElementsByTagName('img');
+            for (var j = 0; j < holder.length; j++) {
+                //设置属性
+                var item = holder[j];
+                var src = holder[j].getAttribute('src');
+                item.setAttribute('src', "");
+                item.setAttribute('img-data', src);
+                item.style.background = `url(${_default.loading_img}) no-repeat center`;
+                item.style.backgroundSize = 'contain';
+                holder[j].flg = false;
+                plan.push(holder[j]);
+            }
         }
     }
 
