@@ -1,11 +1,14 @@
 /*
 使用方法：
-    LazyImg.load({
-        loading_type:'bottom',
-        loading_img: 'xxxx.jpg',
-        loading_transition:false,
-        loading_time: '0.5s'
-    });
+    把需要加载的图片用<img src="../resource/10.jpg" alt="">方式加载到DOM中
+    把需要延迟加载的图片放到class：lazyImg里
+    激活
+        LazyImg.load({
+            loading_type:'bottom',
+            loading_img: 'xxxx.jpg',
+            loading_transition:false,
+            loading_time: '0.5s'
+        });
 
 参数说明：
     loading_type：加载位置，当图片进入到哪里时候开始加载图片，有三个参数：bottom,top,middle
