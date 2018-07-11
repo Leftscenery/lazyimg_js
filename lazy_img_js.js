@@ -72,17 +72,17 @@ let LazyImg = (function () {
     //图片的渐变效果
     function fade(ele, src) {
         let op = Number(window.getComputedStyle(ele, null)['opacity']);
-        let step = 0.6/(_default.loading_time/17);
+        let step = 0.8/(_default.loading_time/17);
         console.log(step);
         ele.style.opacity = op;
         let timer = setInterval(function () {
-            if (ele.style.opacity <= 0.4) {
+            if (ele.style.opacity <= 0.2) {
                 clearInterval(timer);
                 ele.setAttribute('src', src);
                 ele.removeAttribute('img-data');
                 ele.style.background = '';
                 //用于fake交界
-                ele.style.opacity = 0.4;
+                ele.style.opacity = 0.2;
                 //渐显
                 let timer1 = setInterval(function () {
                     if (ele.style.opacity >= 1) {
