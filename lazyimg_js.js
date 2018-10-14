@@ -1,29 +1,10 @@
 /*
-使用方法：
-    把需要加载的图片用<img src="../resource/10.jpg" alt="">方式加载到DOM中
-    把需要延迟加载的图片放到class：lazyImg里
-    激活
-    LazyImg.load({
-        loading_mode: 'range'
-        loading_type:'bottom',
-        loading_img: 'xxxx.jpg',
-        loading_transition:false,
-        loading_time: 500
-    });
-
-参数说明：
-    loading_mode：使用模块化加载模式。
-                    'range'：用于范围，把需要加载的图片包在class=lazyImg块内即可。
-                    'global'：用于全局，把所有img标签都加载。
-                    'img'：用于单张，需要把想要延迟加载的图片加上class=lazyImg即可。
-    loading_type：加载位置，当图片进入到哪里时候开始加载图片。
-                    'top'：只要图片即将进入到屏幕中就加载
-                    'middle'：当图片的一半进入到屏幕中时候加载
-                    'bottom'：当图片完全进入屏幕中时加载
-    loading_img：加载图片地址
-    loading_transition：是否开启渐变加载
-    loading_time：渐变加载时间，毫秒为单位
-*/
+ * VERSION: 1.2.0
+ * DATE: 2018-07
+ *
+ * @author: Jiawei Zhou, leftscenery@gmail.com
+ * @github: https://github.com/Leftscenery
+ */
 
 let LazyImg = (function () {
     var isCompatible;
