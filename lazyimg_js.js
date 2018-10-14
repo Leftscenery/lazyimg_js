@@ -2,8 +2,9 @@
  * VERSION: 1.2.0
  * DATE: 2018-07
  *
- * @author: Jiawei Zhou, leftscenery@gmail.com
- * @github: https://github.com/Leftscenery
+ * @ author: Jiawei Zhou, leftscenery@gmail.com
+ * @ github: https://github.com/Leftscenery
+ * @ doc: https://github.com/Leftscenery/lazyimg_js/blob/master/README.md
  */
 
 let LazyImg = (function () {
