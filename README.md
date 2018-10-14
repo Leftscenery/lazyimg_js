@@ -4,8 +4,9 @@ lazyimg_js
 #### Introduction:
 Lazyimg_js is a plugin that offer a simple way to apply lazy images.
 
----
 <br/>
+
+---
 
 #### Instruction:
 1. Put the image url in img tag, e.g: `<img src="xxxx" alt="">`
@@ -20,8 +21,10 @@ LazyImg.load({
     loading_time: 300
 });
 ```
----
+
 <br/>
+
+---
 
 #### Options:
 + **loading_mode**：select loading mode
@@ -35,7 +38,9 @@ LazyImg.load({
 + **loading_img**：Loading image URL
 + **loading_transition**：Turn on transition or not.
 + **loading_time**：Transition loading time (ms based).
----
+
 <br/>
+
+---
 Feel free to let me know if there are any functions or parts need to be fixed :)
 <br>By Jiawei Zhou 2018
