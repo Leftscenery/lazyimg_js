@@ -128,7 +128,7 @@ let LazyImg = (function () {
         _default = {
             loading_mode: 'range',
             loading_type: 'bottom',
-            loading_img: 'https://img.zcool.cn/community/0142eb5992b0650000002129b61cfc.gif',
+            loading_img: '',
             loading_transition: true,
             loading_time: 500
         };
