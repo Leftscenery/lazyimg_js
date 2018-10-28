@@ -55,7 +55,6 @@ let LazyImg = (function () {
     function fade(ele, src) {
         let op = Number(window.getComputedStyle(ele, null)['opacity']);
         let step = 0.8/(_default.loading_time/17);
-        console.log(step);
         ele.style.opacity = op;
         let timer = setInterval(function () {
             if (ele.style.opacity <= 0.2) {
@@ -151,6 +150,8 @@ let LazyImg = (function () {
                     //set attr
                     var item = imgList[j];
                     var src = imgList[j].getAttribute('src');
+                    item.style.width = getComputedStyle(item)['width'];
+                    item.style.height = getComputedStyle(item)['height'];
                     item.setAttribute('src', "");
                     item.setAttribute('img-data', src);
                     item.style.background = `url(${_default.loading_img}) no-repeat center`;
@@ -164,6 +165,8 @@ let LazyImg = (function () {
                 //set attr
                 var item = holder[j];
                 var src = holder[j].getAttribute('src');
+                item.style.width = getComputedStyle(item)['width'];
+                item.style.height = getComputedStyle(item)['height'];
                 item.setAttribute('src', "");
                 item.setAttribute('img-data', src);
                 item.style.background = `url(${_default.loading_img}) no-repeat center`;
@@ -177,6 +180,8 @@ let LazyImg = (function () {
                 //set attr
                 var item = holder[j];
                 var src = holder[j].getAttribute('src');
+                item.style.width = getComputedStyle(item)['width'];
+                item.style.height = getComputedStyle(item)['height'];
                 item.setAttribute('src', "");
                 item.setAttribute('img-data', src);
                 item.style.background = `url(${_default.loading_img}) no-repeat center`;
