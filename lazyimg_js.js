@@ -249,6 +249,11 @@ let LazyImg = (function () {
             inlineDetect();
             replaceImg();
             loadEvent();
+        },
+        reload:function () {
+            inlineDetect();
+            replaceImg();
+            loadEvent();
         }
     }
 })();
